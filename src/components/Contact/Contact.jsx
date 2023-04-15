@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
+
+
+  const [email, setEmail] = useState("");
   const emailHandler = (e) => {
     console.log(e.target.value);
   };
   const passwordHandler = (e) => {
     console.log(e.target.value);
   };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    setEmail(email);
+    console.log(e.target.email.value);
+  };
+  console.log("email :>> ", email);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div className="mt-14">
-      <form>
+      <form onSubmit={submitHandler}>
         <div className="mb-6">
           <label
             htmlFor="email"
@@ -42,7 +71,7 @@ const Contact = () => {
             required
           />
         </div>
-        <div className="flex items-start mb-6">
+        {/* <div className="flex items-start mb-6">
           <div className="flex items-center h-5">
             <input
               id="remember"
@@ -58,15 +87,22 @@ const Contact = () => {
           >
             Remember me
           </label>
-        </div>
-        <Link to="/">
+        </div> */}
+        {/* <Link to="/contact">
           <button
+            onSubmit={sumitHandler}
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Register
           </button>
-        </Link>
+        </Link> */}
+        <button
+          type="submit"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Register
+        </button>
       </form>
     </div>
   );
