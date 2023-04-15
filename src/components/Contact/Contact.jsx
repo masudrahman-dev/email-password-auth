@@ -1,42 +1,40 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import app from "../Firebase/Firebase.config";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+const auth = getAuth(app);
 
 const Contact = () => {
-
-
   const [email, setEmail] = useState("");
   const emailHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const passwordHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const submitHandler = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    setEmail(email);
-    console.log(e.target.email.value);
+    console.log(email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        e.target.reset();
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorMessage);
+      });
+
+    // e.target.email.value = "";
+    // e.target.password.value = "";
   };
-  console.log("email :>> ", email);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   return (
     <div className="mt-14">
       <form onSubmit={submitHandler}>
